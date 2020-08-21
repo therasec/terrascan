@@ -45,15 +45,5 @@ jobs:
     - name: Checkout Terrascan
       uses: actions/checkout@v1
 
-    - name: Build Terrascan docker image
-      run: make docker-build
-
-    - name: Login to docker hub
-      run: echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u accurics --password-stdin
-
-    - name: Push Terrascan docker image
-      run: make docker-push
-    
-    - name: Push Terrascan latest docker image
-      if: ${{ github.ref == 'ref/head/master' }}
-      run: make docker-push-latest
+    - name: Test branch name
+      run: echo ${github.ref}
