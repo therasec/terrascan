@@ -3,16 +3,9 @@ on:
   push:
   pull_request:
 jobs:
-  push:
-    # Ensure "validate" job passes before pushing image.
-    needs: validate
-
+  test:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
 
     steps:
-    - name: Checkout Terrascan
-      uses: actions/checkout@v1
-
     - name: Test branch name
       run: echo $GITHUB_REF
